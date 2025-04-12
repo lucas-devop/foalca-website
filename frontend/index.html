@@ -223,6 +223,7 @@ const SIGNING_API = "https://foalca-project.onrender.com/sign";
 let walletAddress = null;
 let provider, signer, contract;
 let currentPoints = 0;
+let extensionConnected = false;
 
 function updateUIConnected(address) {
   document.getElementById("status").innerText = `✅ Connected: ${address}`;
