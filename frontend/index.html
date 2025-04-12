@@ -223,7 +223,6 @@ const SIGNING_API = "https://foalca-project.onrender.com/sign";
 let walletAddress = null;
 let provider, signer, contract;
 let currentPoints = 0;
-let extensionConnected = false;
 
 function updateUIConnected(address) {
   document.getElementById("status").innerText = `✅ Connected: ${address}`;
@@ -310,6 +309,42 @@ async function claimTokens() {
 document.getElementById("connect").onclick = connectWallet;
 document.getElementById("disconnect").onclick = disconnectWallet;
 document.getElementById("claim").onclick = claimTokens;
+
+// Extension
+    let extensionConnected = false;
+
+    document.getElementById("addExtension").onclick = () => {
+      alert("Redirecting to Chrome Extensions page. Please load the FOALCA Tracker manually.");
+      window.open("chrome://extensions", "_blank");
+    };
+
+    document.getElementById("removeExtension").onclick = () => {
+      alert("To remove the extension, go to chrome://extensions and remove FOALCA Tracker manually.");
+    };
+
+    window.addEventListener("message", (event) => {
+      if (event.data && event.data.type === "extensionPing") {
+        extensionConnected = true;
+        document.getElementById("extensionStatus").innerText = "✅ Tracker extension connected";
+        document.getElementById("addExtension").style.display = "none";
+        document.getElementById("removeExtension").style.display = "inline-block";
+
+        window.postMessage({ type: "getPoints" }, "*");
+      }
+
+      if (event.data && event.data.type === "currentPoints") {
+    const displayEl = document.getElementById("pointsStatus");
+
+    if (currentPoints !== event.data.points) {
+      displayEl.classList.remove("pulse");
+      void displayEl.offsetWidth;       
+      displayEl.classList.add("pulse");
+    }
+
+    currentPoints = event.data.points;
+    displayEl.innerText = `⛏️ Tokens: ${currentPoints}`;
+  }
+});
 
 window.addEventListener("load", async () => {
   if (window.ethereum) {
