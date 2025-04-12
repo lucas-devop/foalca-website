@@ -1,0 +1,604 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: white;
+    text-align: center;
+    padding: 2rem;
+    color: #333;
+  }
+
+  html {
+  scroll-behavior: smooth;
+}
+
+
+  h1 {
+    font-size: 26px;
+    color: #2c3e50;
+  }
+
+
+  .logo-container {
+  margin-bottom: 1rem;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.logo {
+  max-width: 500px;
+  height: auto;
+}
+
+.main-nav {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: #00695c;
+  font-weight: 600;
+  transition: color 0.2s ease;
+  position: relative;
+  font-size: 18px;
+  margin-right: 18px;
+}
+
+.main-nav a::after {
+  content: '';
+  display: block;
+  height: 2px;
+  background: #00695c;
+  width: 0;
+  transition: width 0.3s;
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+}
+
+.main-nav a:hover::after {
+  width: 100%;
+}
+
+.main-nav a:hover {
+  color: #004d40;
+}
+
+
+footer {
+  background: #111;
+  color: #ccc;
+  padding: 40px 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 80px;
+}
+
+footer .footer-container {
+  max-width: 800px;
+  margin: auto;
+}
+
+footer p {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+footer p.disclaimer-title {
+  font-weight: bold;
+  color: #ff5555;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+footer a {
+  color: #29b6f6;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #ffffff;
+}
+
+
+
+section {
+  scroll-margin-top: 80px;
+}
+
+.wallet-container {
+  background: #f1f1f182;
+  padding-top: 10px;
+  padding-bottom: 50px;
+}
+
+  .wallet-actions {
+    margin: 1.5rem 0;
+  }
+
+  .status-box {
+    display: inline-block;
+    background: #fff;
+    border: 2px solid #0096949e;
+    border-radius: 12px;
+    padding: 1rem 2rem;
+    font-weight: bold;
+    color: #00695c;
+    box-shadow: 0 0 8px rgba(0, 150, 136, 0.4);
+    transition: all 0.3s ease-in-out;
+    margin-bottom: 1rem;
+  }
+
+  .glow-btn {
+    padding: 12px 24px;
+    margin: 8px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background: #4caf50;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.6);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .glow-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 16px rgba(76, 175, 80, 0.8);
+  }
+
+  .glow-btn.primary {
+    background: #1976d2;
+    box-shadow: 0 0 8px rgba(25, 118, 210, 0.6);
+  }
+
+  .glow-btn.primary:hover {
+    box-shadow: 0 0 16px rgba(25, 118, 210, 0.9);
+  }
+
+  .glow-btn.danger {
+    background: #e53935;
+    box-shadow: 0 0 8px rgba(229, 57, 53, 0.6);
+  }
+
+  .glow-btn.danger:hover {
+    box-shadow: 0 0 16px rgba(229, 57, 53, 0.9);
+  }
+
+  .token-display {
+    margin: 1rem 0;
+    font-size: 24px;
+    font-weight: bold;
+    color: #b71c1c;
+  }
+
+  @keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.token-display.pulse {
+  animation: pulse 0.4s ease-in-out;
+}
+
+
+  .extension-panel {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-top: 2rem;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .token-intro {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+  padding: 1rem;
+}
+
+.highlighted-point {
+  background: linear-gradient(90deg, #e0f2f1, #b2dfdb);
+  border-left: 6px solid #00796b;
+  padding: 1rem;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 121, 107, 0.15);
+}
+
+.overview-points {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  color: #444;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.overview-points li {
+  margin-bottom: 1rem; /* space between points */
+}
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
+
+.rewards-section {
+  background: #f1f1f182;
+  padding: 4rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border: 10px ridge #00715e;
+  margin-top: 70px;
+  border-block-end-color: #004d404d;
+  border-block-start-color: #004d4047;
+}
+
+.rewards-content {
+  animation: floatEffect 8s ease-in-out infinite;
+  font-family: 'Comic Neue', cursive;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.reward-highlight {
+  font-size: 28px;
+  font-weight: bold;
+  color: #00695c;
+  margin-top: 1.5rem;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.reward-sub {
+  font-size: 20px;
+  margin-top: 1rem;
+  color: #333;
+}
+
+/* Soft, endless animation */
+@keyframes floatEffect {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+
+
+.boost-levels {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 3rem;
+}
+
+.boost-box {
+  background: white;
+  border: 2px solid #00695c;
+  border-radius: 12px;
+  padding: 1.5rem;
+  width: 280px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,105,92,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.boost-box:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0,105,92,0.2);
+}
+
+.boost-box h3 {
+  font-size: 20px;
+  color: #004d40;
+  margin-bottom: 0.5rem;
+}
+
+.boost-box p {
+  font-size: 15px;
+  color: #444;
+}
+
+.rewards-extra-note {
+  margin-top: 2.5rem;
+  font-size: 16px;
+  font-weight: 500;
+  color: #af0000;
+  animation: pulseFade 4s ease-in-out infinite;
+}
+
+/* Jemný puls efekt */
+@keyframes pulseFade {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.boost-box:nth-child(1) h3 {
+  color: #f57c00; /* orange color for Boosted */
+}
+
+.boost-box:nth-child(2) h3 {
+  color: #1976d2; /* blue color for Hyper Boosted */
+}
+
+.boost-box:nth-child(3) h3 {
+  color: #d32f2f; /* red color for Furious */
+}
+
+
+
+.tokenomics-section {
+  background: #ffffff;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.tokenomics-intro {
+  font-size: 18px;
+  margin-bottom: 2rem;
+  color: #555;
+}
+
+
+.tokenomics-meta {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  font-size: 16px;
+  color: #333;
+  line-height: 1.6;
+}
+
+.tokenomics-meta {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.meta-box {
+  background: #f9f9f9;
+  border: 2px solid #e0e0e0;
+  border-left: 6px solid #00695c;
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  max-width: 500px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+  text-align: left;
+}
+
+.supply-line {
+  font-size: 20px;
+  font-weight: bold;
+  color: #00695c;
+  margin-bottom: 1rem;
+}
+
+.contract-line {
+  font-size: 15px;
+  color: #333;
+}
+
+.contract-line a {
+  color: #1976d2;
+  text-decoration: none;
+  font-weight: 600;
+  word-break: break-word;
+}
+
+.contract-line a:hover {
+  text-decoration: underline;
+}
+
+
+.tokenomics-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+canvas {
+  max-width: 500px;
+  max-height: 500px;
+  animation: popin 1.2s ease-out;
+}
+
+@keyframes popin {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.tokenomics-legend {
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.tokenomics-legend ul {
+  list-style: none;
+  padding: 0;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.tokenomics-legend li {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 14px;
+  font-size: 15px;
+  color: #333;
+  line-height: 1.4;
+}
+
+.tokenomics-legend li strong {
+  font-weight: 600;
+  color: #222;
+}
+
+
+.tokenomics-legend span {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  border-radius: 3px;
+}
+
+
+.goals-section {
+  background: #f1f1f182;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.goals-intro {
+  font-size: 18px;
+  margin-bottom: 3rem;
+  color: #444;
+}
+
+.roadmap.horizontal {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 24px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.phase {
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  padding: 1.5rem;
+  min-width: 300px;
+  max-width: 350px;
+  flex-shrink: 0;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.phase:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.phase-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.phase-dot {
+  width: 16px;
+  height: 16px;
+  background: #00695c;
+  border-radius: 50%;
+  margin-right: 10px;
+  flex-shrink: 0;
+  animation: pulseDot 2s infinite;
+}
+
+.phase h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #2c3e50;
+}
+
+.phase h3 span {
+  display: block;
+  font-weight: normal;
+  font-size: 15px;
+  color: #666;
+}
+
+.phase ul {
+  text-align: left;
+  margin-top: 1rem;
+  padding-left: 0;
+  list-style: none;
+}
+
+.phase ul li {
+  margin-bottom: 0.6rem;
+  font-size: 15px;
+  color: #444;
+}
+
+@keyframes pulseDot {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.6; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.current-phase {
+  animation: blinkBorder 1.2s infinite;
+  border: 2px solid #d32f2f;
+}
+
+@keyframes blinkBorder {
+  0%   { border-color: #43a047; }
+  50%  { border-color: #d32f2f; }
+  100% { border-color: #43a047; }
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.social-btn {
+  font-size: 48px;
+  color: white;
+  background-color: #5865F2; /* Default Discord */
+  padding: 20px;
+  border-radius: 50%;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  text-decoration: none;
+}
+
+.social-btn.twitter {
+  background-color: #000; /* X / Twitter */
+}
+
+.social-btn:hover {
+  transform: scale(1.1);
+  opacity: 0.85;
+}
+
+#scrollTopBtn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 999;
+  background-color: #015c57;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 12px 16px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#scrollTopBtn:hover {
+  background-color: #00857e;
+  transform: scale(1.1);
+}

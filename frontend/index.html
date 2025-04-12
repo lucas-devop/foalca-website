@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ForAllCases (FOALCA)</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.6.2/dist/ethers.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  
+  <link rel="icon" type="image/png" href="favicon.png">
+
+</head>
+<body>
+
+  <!-- LOGO -->
+  <div class="logo-container">
+    <img src="forallcases-foalca.png" alt="FOALCA Logo" class="logo" />
+  </div>
+
+  <!-- NAVIGATION -->
+  <nav class="main-nav">
+    <a href="#wallet">Wallet</a>
+    <a href="#overview">Overview</a>
+    <a href="#rewards">Activity Rewards</a>
+    <a href="#tokenomics">Tokenomics</a>
+    <a href="#goals">Goals</a>
+    <a href="#socials">Social Networks</a>
+  </nav>
+
+  <section id="wallet" class="wallet-container">
+  <h1>🦊 FOALCA Wallet Interface</h1>
+
+  <div id="status" class="status-box" style="cursor: pointer;" title="Click to copy address">MetaMask Wallet is not connected.</div>
+
+  <div class="wallet-actions">
+    <button id="connect" class="glow-btn">🔗 Connect Wallet</button>
+    <button id="disconnect" class="glow-btn danger" style="display:none">✖️ Disconnect</button>
+    <button id="claim" class="glow-btn primary" disabled>💸 Claim FOALCA</button>
+  </div>
+
+  <div id="extension-section" class="extension-panel">
+    <div id="extensionStatus">🔌 Tracker extension not connected</div>
+    <div id="pointsStatus" class="token-display">⛏️ Tokens: 0</div>
+    <button id="addExtension" class="glow-btn">➕ Add Tracker Extension</button>
+    <button id="removeExtension" class="glow-btn danger" style="display:none">🗑️ Remove Tracker Extension</button>
+  </div>
+</section>
+
+
+<section id="overview">
+  <h2>🔍 Token Overview</h2>
+
+  <div class="token-intro">
+    <div class="highlighted-point">
+      <strong>ForAllCases ($FOALCA)</strong> is a next-generation deflationary token built to incentivize and reward authentic user engagement across the internet — instantly, fairly, and transparently.
+    </div>
+    <ul class="overview-points">
+      <li><strong>🧩 Solving passivity:</strong> The token rewards internet users for any kind of activity — whether you're reading articles, writing comments, ordering products online, or learning new skills. </li>
+      <li><strong>🧠 Built to last:</strong> FOALCA’s smart tokenomics curb volatility even during market spikes, while its deflationary mechanics ensure the supply keeps shrinking over time.</li>
+      <li><strong>⚡ Energy friendly:</strong> FOALCA skips mining entirely — rewards flow straight to your wallet without burning power or resources.</li>
+      <li><strong>🌐 For all cases:</strong> No need to belong to a specific space to earn, buy, or trade — FOALCA is, quite literally, for all cases.</li>
+      <li><strong>🚮 No dumping:</strong> Developers receive no tokens — the development and reserve pool exists solely to support the long-term growth of the ecosystem.</li>
+    </ul>
+  </div>
+
+</section>
+
+<section id="rewards" class="rewards-section">
+
+  <div class="rewards-content">
+    <h2>🎁 Activity Rewards</h2>
+    <p class="reward-highlight">The more active you are, the more your rewards multiply.</p>
+    <p class="reward-sub">Dynamic. Fair. Real-time. FOALCA rewards real engagement.</p>
+  </div>
+
+  <div class="boost-levels">
+    <div class="boost-box">
+      <h3>⚡ Boosted</h3>
+      <p>You're active — and it pays off. Boosted users earn double rewards.</p>
+    </div>
+    <div class="boost-box">
+      <h3>🥏 Hyper Boosted</h3>
+      <p>Keep the pace. Sustained engagement means triple reward power.</p>
+    </div>
+    <div class="boost-box">
+      <h3>🔥 Furious</h3>
+      <p>Unstoppable! The highest level of activity grants you 5× the tokens.</p>
+    </div>
+  </div>
+  
+  <div class="rewards-extra-note">
+    🏃‍♂️ FOALCA doesn't just reward quantity — it recognizes real, human activity. No bots. No BS.
+  </div>  
+
+</section>
+
+  <section id="tokenomics" class="tokenomics-section">
+    <h2>📊 Tokenomics</h2>
+    <p class="tokenomics-intro">Strategic distribution to ensure sustainability, liquidity, and growth.</p>
+
+    <div class="tokenomics-meta">
+      <div class="meta-box">
+        <div class="supply-line">
+          <strong>Total Supply:</strong> 100,000,000,000 FOALCA
+        </div>
+        <div class="contract-line">
+          <strong>Contract Address:</strong>
+          <a href="https://testnet.bscscan.com/token/0xEF227db3D4a509a4106Bbcee6505e13977F771B3" target="_blank">
+            0xEF22...71B3
+          </a>
+        </div>
+      </div>
+    </div>
+    
+  
+    <div class="tokenomics-wrapper">
+      <canvas id="tokenomicsChart" width="200" height="200"></canvas>
+      <div class="tokenomics-legend">
+        <ul>
+          <ul>
+            <li><span style="background:#f57c00;"></span> <strong>Investors</strong> – Early backers fueling initial growth and credibility.</li>
+            <li><span style="background:#e53935;"></span> <strong>Marketing</strong> – Community building, awareness campaigns, and outreach.</li>
+            <li><span style="background:#fdd835;"></span> <strong>Liquidity</strong> – Ensuring smooth trading and market stability.</li>
+            <li><span style="background:#43a047;"></span> <strong>Development</strong> – Long-term support for platform evolution and maintenance. Redistribution Fund - this is not a developer reward.</li>
+            <li><span style="background:#26a69a;"></span> <strong>Rewards</strong> – Distributed to active users based on real engagement. A renewable resource for paying out activity rewards.</li>
+            <li><span style="background:#29b6f6;"></span> <strong>Burning</strong> – Reducing total supply over time to increase scarcity. Currently 1 000,000,000 FOALCA every month.</li>
+            <li><span style="background:#8e24aa;"></span> <strong>Reserve</strong> – Backup pool for future needs, stability, or governance.</li>
+          </ul>          
+        </ul>
+      </div>
+    </div>
+  </section>
+  
+</section>
+
+<section id="goals" class="goals-section">
+  <h2>🎯 Project Goals</h2>
+  <p class="goals-intro">Our vision is driven by clear, strategic milestones. Here’s how FOALCA unfolds:</p>
+
+  <div class="roadmap horizontal">
+    <div class="phase current-phase"> <!-- CP START -->
+
+    <div class="phase">
+      <div class="phase-header">
+        <div class="phase-dot"></div>
+        <h3>Phase 1<br><span>Preparation & Development</span></h3>
+      </div>
+      <ul>
+        <li>📄 Whitepaper & Tokenomics</li>
+        <li>🛠️ Smart Contract Development</li>
+        <li>🚀 Launch on BSC</li>
+        <li>🔒 First security Audit</li>
+      </ul>
+    </div>
+
+  </div> <!-- CP END -->
+
+    <div class="phase">
+      <div class="phase-header">
+        <div class="phase-dot"></div>
+        <h3>Phase 2<br><span>Launch & Initial Growth</span></h3>
+      </div>
+      <ul>
+        <li>🧮 Gamification of online activities</li>
+        <li>🪙 Offer for early-stage investors</li>
+        <li>🛡️ Advanced security Audit</li>
+        <li>💱 Listing on DEX</li>
+      </ul>
+    </div>
+
+    <div class="phase">
+      <div class="phase-header">
+        <div class="phase-dot"></div>
+        <h3>Phase 3<br><span>Expansion & Adoption</span></h3>
+      </div>
+      <ul>
+        <li>🏛️ Listings on CEX</li>
+        <li>🤝 Strategic Partnerships</li>
+        <li>📈 Starting full-fledged deflation</li>
+        <li>🌱 Long-Term Ecosystem Growth</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="socials">
+  <h2>🌐 Social Networks</h2>
+  <p>Join to our official channels:</p>
+  <div class="social-icons">
+    <a href="https://discord.com" target="_blank" class="social-btn discord">
+      <i class="fab fa-discord"></i>
+    </a>
+    <a href="https://x.com" target="_blank" class="social-btn twitter">
+      <i class="fab fa-x-twitter"></i>
+    </a>
+  </div>
+</section>
+
+
+  <script>
+    const CONTRACT_ADDRESS = "0xEF227db3D4a509a4106Bbcee6505e13977F771B3";
+    const CONTRACT_ABI = [
+      "function claimRewardWithSignature(uint256 amount, uint256 nonce, bytes signature) external"
+    ];
+
+    const SIGNING_API = "http://localhost:4000/sign"; // aktualizováno na port 4000
+
+    let walletAddress = null;
+    let provider, signer, contract;
+    let currentPoints = 0;
+
+    function updateUIConnected(address) {
+      document.getElementById("status").innerText = `✅ Connected: ${address}`;
+      document.getElementById("claim").disabled = false;
+      document.getElementById("connect").style.display = "none";
+      document.getElementById("disconnect").style.display = "inline-block";
+    }
+
+    function updateUIDisconnected() {
+      document.getElementById("status").innerText = "MetaMask Wallet is not connected.";
+      document.getElementById("claim").disabled = true;
+      document.getElementById("connect").style.display = "inline-block";
+      document.getElementById("disconnect").style.display = "none";
+    }
+
+    async function connectWallet() {
+      if (typeof window.ethereum === 'undefined') {
+        document.getElementById("status").innerText = "MetaMask not found.";
+        return;
+      }
+
+      try {
+        await window.ethereum.request({ method: 'eth_requestAccounts' });
+        provider = new ethers.BrowserProvider(window.ethereum);
+        signer = await provider.getSigner();
+        walletAddress = await signer.getAddress();
+
+        contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
+
+        localStorage.setItem("foalcaWallet", walletAddress);
+        updateUIConnected(walletAddress);
+      } catch (err) {
+        document.getElementById("status").innerText = "Connection rejected.";
+        console.error(err);
+      }
+    }
+
+    function disconnectWallet() {
+      walletAddress = null;
+      localStorage.removeItem("foalcaWallet");
+      updateUIDisconnected();
+    }
+
+    async function claimTokens() {
+      if (!walletAddress || currentPoints === 0) return;
+
+      try {
+        const response = await fetch(SIGNING_API, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ address: walletAddress, amount: currentPoints })
+        });
+
+        const data = await response.json();
+        if (!data.signature || !data.nonce) throw new Error("Invalid response from signing API");
+
+        const amount = ethers.parseUnits(currentPoints.toString(), 18);
+        const tx = await contract.claimRewardWithSignature(amount, data.nonce, data.signature);
+        await tx.wait();
+
+        alert("✅ FOALCA claimed successfully!");
+        currentPoints = 0;
+        document.getElementById("pointsStatus").innerText = "⛏️ Tokens: 0";
+        window.postMessage({ type: "resetPoints" }, "*");
+      } catch (err) {
+        console.error("Claim failed:", err);
+        alert("❌ Claim failed: " + (err.reason || err.message));
+      }
+    }
+
+    document.getElementById("connect").onclick = connectWallet;
+    document.getElementById("disconnect").onclick = disconnectWallet;
+    document.getElementById("claim").onclick = claimTokens;
+
+    // Extension logic
+    let extensionConnected = false;
+
+    document.getElementById("addExtension").onclick = () => {
+      alert("Redirecting to Chrome Extensions page. Please load the FOALCA Tracker manually.");
+      window.open("chrome://extensions", "_blank");
+    };
+
+    document.getElementById("removeExtension").onclick = () => {
+      alert("To remove the extension, go to chrome://extensions and remove FOALCA Tracker manually.");
+    };
+
+    window.addEventListener("message", (event) => {
+      if (event.data && event.data.type === "extensionPing") {
+        extensionConnected = true;
+        document.getElementById("extensionStatus").innerText = "✅ Tracker extension connected";
+        document.getElementById("addExtension").style.display = "none";
+        document.getElementById("removeExtension").style.display = "inline-block";
+
+        // Požádej o body hned po připojení
+        window.postMessage({ type: "getPoints" }, "*");
+      }
+
+      if (event.data && event.data.type === "currentPoints") {
+    const displayEl = document.getElementById("pointsStatus");
+
+    if (currentPoints !== event.data.points) {
+      displayEl.classList.remove("pulse"); // reset animace
+      void displayEl.offsetWidth;          // reflow pro animaci
+      displayEl.classList.add("pulse");
+    }
+
+    currentPoints = event.data.points;
+    displayEl.innerText = `⛏️ Tokens: ${currentPoints}`;
+  }
+});
+
+    window.addEventListener("load", async () => {
+      const saved = localStorage.getItem("foalcaWallet");
+      if (saved && window.ethereum) {
+        try {
+          provider = new ethers.BrowserProvider(window.ethereum);
+          signer = await provider.getSigner();
+          walletAddress = saved;
+          contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
+          updateUIConnected(saved);
+        } catch (err) {
+          console.warn("Auto-connect failed:", err);
+        }
+      }
+
+      // Pošli ping rozšíření
+  setTimeout(() => {
+    window.postMessage({ type: "checkExtension" }, "*");
+  }, 1000);
+
+  // 🔁 Automatický refresh každých 5s
+  setInterval(() => {
+    if (extensionConnected) {
+      window.postMessage({ type: "getPoints" }, "*");
+    }
+  }, 5000);
+});
+
+
+// Kliknutí na adresu = kopírování
+document.getElementById("status").onclick = () => {
+  if (!walletAddress) return;
+
+  navigator.clipboard.writeText(walletAddress).then(() => {
+    const statusEl = document.getElementById("status");
+    const original = statusEl.innerText;
+    statusEl.innerText = "📋 Address copied!";
+    setTimeout(() => statusEl.innerText = original, 2000);
+  });
+};
+
+  </script>
+
+
+<script>
+  const ctx = document.getElementById('tokenomicsChart').getContext('2d');
+
+  const data = {
+    labels: ['Investors', 'Marketing', 'Liquidity', 'Development', 'Rewards', 'Burning', 'Reserve'],
+    datasets: [{
+      data: [15000000000, 12500000000, 20000000000, 10000000000, 15000000000, 15000000000, 12500000000],
+      backgroundColor: [
+        '#f57c00', // Investors
+        '#e53935', // Marketing
+        '#fdd835', // Liquidity
+        '#43a047', // Development
+        '#26a69a', // Rewards
+        '#29b6f6', // Burning
+        '#8e24aa'  // Reserve
+      ],
+      borderWidth: 2,
+      borderColor: '#fff',
+      hoverOffset: 12
+    }]
+  };
+
+  const options = {
+    cutout: '60%',
+    animation: {
+      animateScale: true
+    },
+    plugins: {
+      legend: {
+        display: false
+      },
+      tooltip: {
+        callbacks: {
+          label: function(ctx) {
+            const label = ctx.label || '';
+            const value = ctx.parsed;
+            return `${label}: ${value.toLocaleString()} FOALCA`;
+          }
+        }
+      }
+    }
+  };
+
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: data,
+    options: options
+  });
+</script>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+    if (!scrollTopBtn) return;
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 200) {
+        scrollTopBtn.style.display = "block";
+      } else {
+        scrollTopBtn.style.display = "none";
+      }
+    });
+
+    scrollTopBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  });
+</script>
+
+
+
+<!-- Scroll to Top Button -->
+<button id="scrollTopBtn" title="Go to top">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+
+<footer>
+  <div class="footer-container">
+    <p class="disclaimer-title">Disclaimer</p>
+    <p>
+      ForAllCases ($FOALCA) is a utility token intended for experimental, educational, and reward-based purposes only.
+      It is not an investment product, security, or financial instrument. We do not guarantee any future value,
+      listing, or tradability. No fundraising or token sales have been conducted. The token is distributed freely
+      to users based on real activity. Use at your own risk.
+    </p>
+    <p>
+      View our <a href="privacy-policy.html">Privacy Policy</a>.
+    </p>
+  </div>
+</footer>
+
+
+</body>
+</html>
