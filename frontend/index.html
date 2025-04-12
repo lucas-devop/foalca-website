@@ -213,146 +213,119 @@
 
 
   <script>
-    const CONTRACT_ADDRESS = "0xEF227db3D4a509a4106Bbcee6505e13977F771B3";
-    const CONTRACT_ABI = [
-      "function claimRewardWithSignature(uint256 amount, uint256 nonce, bytes signature) external"
-    ];
+const CONTRACT_ADDRESS = "0xEF227db3D4a509a4106Bbcee6505e13977F771B3";
+const CONTRACT_ABI = [
+  "function claimRewardWithSignature(uint256 amount, uint256 nonce, bytes signature) external"
+];
 
-    const SIGNING_API = "https://foalca-project.onrender.com/sign";
+const SIGNING_API = "https://foalca-project.onrender.com/sign";
 
+let walletAddress = null;
+let provider, signer, contract;
+let currentPoints = 0;
 
-    let walletAddress = null;
-    let provider, signer, contract;
-    let currentPoints = 0;
+function updateUIConnected(address) {
+  document.getElementById("status").innerText = `✅ Connected: ${address}`;
+  document.getElementById("claim").disabled = false;
+  document.getElementById("connect").style.display = "none";
+  document.getElementById("disconnect").style.display = "inline-block";
+}
 
-    function updateUIConnected(address) {
-      document.getElementById("status").innerText = `✅ Connected: ${address}`;
-      document.getElementById("claim").disabled = false;
-      document.getElementById("connect").style.display = "none";
-      document.getElementById("disconnect").style.display = "inline-block";
-    }
+function updateUIDisconnected() {
+  document.getElementById("status").innerText = "MetaMask Wallet is not connected.";
+  document.getElementById("claim").disabled = true;
+  document.getElementById("connect").style.display = "inline-block";
+  document.getElementById("disconnect").style.display = "none";
+}
 
-    function updateUIDisconnected() {
-      document.getElementById("status").innerText = "MetaMask Wallet is not connected.";
-      document.getElementById("claim").disabled = true;
-      document.getElementById("connect").style.display = "inline-block";
-      document.getElementById("disconnect").style.display = "none";
-    }
-
-    async function connectWallet() {
-      if (typeof window.ethereum === 'undefined') {
-        document.getElementById("status").innerText = "MetaMask not found.";
-        return;
-      }
-
-      try {
-        await window.ethereum.request({ method: 'eth_requestAccounts' });
-        provider = new ethers.BrowserProvider(window.ethereum);
-        signer = await provider.getSigner();
-        walletAddress = await signer.getAddress();
-
-        contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
-
-        localStorage.setItem("foalcaWallet", walletAddress);
-        updateUIConnected(walletAddress);
-      } catch (err) {
-        document.getElementById("status").innerText = "Connection rejected.";
-        console.error(err);
-      }
-    }
-
-    function disconnectWallet() {
-      walletAddress = null;
-      localStorage.removeItem("foalcaWallet");
-      updateUIDisconnected();
-    }
-
-    async function claimTokens() {
-      if (!walletAddress || currentPoints === 0) return;
-
-      try {
-        const response = await fetch(SIGNING_API, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ address: walletAddress, amount: currentPoints })
-        });
-
-        const data = await response.json();
-        if (!data.signature || !data.nonce) throw new Error("Invalid response from signing API");
-
-        const amount = ethers.parseUnits(currentPoints.toString(), 18);
-        const tx = await contract.claimRewardWithSignature(amount, data.nonce, data.signature);
-        await tx.wait();
-
-        alert("✅ FOALCA claimed successfully!");
-        currentPoints = 0;
-        document.getElementById("pointsStatus").innerText = "⛏️ Tokens: 0";
-        window.postMessage({ type: "resetPoints" }, "*");
-      } catch (err) {
-        console.error("Claim failed:", err);
-        alert("❌ Claim failed: " + (err.reason || err.message));
-      }
-    }
-
-    document.getElementById("connect").onclick = connectWallet;
-    document.getElementById("disconnect").onclick = disconnectWallet;
-    document.getElementById("claim").onclick = claimTokens;
-
-    // Extension
-    let extensionConnected = false;
-
-    document.getElementById("addExtension").onclick = () => {
-      alert("Redirecting to Chrome Extensions page. Please load the FOALCA Tracker manually.");
-      window.open("chrome://extensions", "_blank");
-    };
-
-    document.getElementById("removeExtension").onclick = () => {
-      alert("To remove the extension, go to chrome://extensions and remove FOALCA Tracker manually.");
-    };
-
-    window.addEventListener("message", (event) => {
-      if (event.data && event.data.type === "extensionPing") {
-        extensionConnected = true;
-        document.getElementById("extensionStatus").innerText = "✅ Tracker extension connected";
-        document.getElementById("addExtension").style.display = "none";
-        document.getElementById("removeExtension").style.display = "inline-block";
-
-        window.postMessage({ type: "getPoints" }, "*");
-      }
-
-      if (event.data && event.data.type === "currentPoints") {
-    const displayEl = document.getElementById("pointsStatus");
-
-    if (currentPoints !== event.data.points) {
-      displayEl.classList.remove("pulse"); 
-      void displayEl.offsetWidth;      
-      displayEl.classList.add("pulse");
-    }
-
-    currentPoints = event.data.points;
-    displayEl.innerText = `⛏️ Tokens: ${currentPoints}`;
+async function connectWallet() {
+  if (typeof window.ethereum === 'undefined') {
+    document.getElementById("status").innerText = "MetaMask not found.";
+    return;
   }
-});
 
-    window.addEventListener("load", async () => {
-      const saved = localStorage.getItem("foalcaWallet");
-      if (saved && window.ethereum) {
-        try {
-          provider = new ethers.BrowserProvider(window.ethereum);
-          signer = await provider.getSigner();
-          walletAddress = saved;
-          contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
-          updateUIConnected(saved);
-        } catch (err) {
-          console.warn("Auto-connect failed:", err);
-        }
-      }
+  try {
+    await window.ethereum.request({ method: 'eth_requestAccounts' });
+    provider = new ethers.BrowserProvider(window.ethereum);
+    signer = await provider.getSigner();
+    walletAddress = await signer.getAddress();
 
+    contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
+
+    localStorage.setItem("foalcaWallet", walletAddress);
+    updateUIConnected(walletAddress);
+    console.log("🔗 Connected wallet:", walletAddress);
+  } catch (err) {
+    document.getElementById("status").innerText = "Connection rejected.";
+    console.error(err);
+  }
+}
+
+function disconnectWallet() {
+  walletAddress = null;
+  localStorage.removeItem("foalcaWallet");
+  updateUIDisconnected();
+}
+
+async function claimTokens() {
+  if (!walletAddress || currentPoints === 0) return;
+
+  const liveAddress = await signer.getAddress();
+  if (walletAddress !== liveAddress) {
+    console.warn("⚠️ Wallet address mismatch! Stored:", walletAddress, "Live:", liveAddress);
+    walletAddress = liveAddress;
+  }
+
+  console.log("🚀 Claiming for address:", walletAddress);
+  console.log("🎯 Current points:", currentPoints);
+
+  try {
+    const response = await fetch(SIGNING_API, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ address: walletAddress, amount: currentPoints })
+    });
+
+    const data = await response.json();
+    console.log("📜 Signature:", data.signature);
+    console.log("🔁 Nonce:", data.nonce);
+
+    if (!data.signature || !data.nonce) throw new Error("Invalid response from signing API");
+
+    const amount = ethers.parseUnits(currentPoints.toString(), 18);
+    const tx = await contract.claimRewardWithSignature(amount, data.nonce, data.signature);
+    await tx.wait();
+
+    alert("✅ FOALCA claimed successfully!");
+    currentPoints = 0;
+    document.getElementById("pointsStatus").innerText = "⛏️ Tokens: 0";
+    window.postMessage({ type: "resetPoints" }, "*");
+  } catch (err) {
+    console.error("❌ Claim failed:", err);
+    alert("❌ Claim failed: " + (err.reason || err.message));
+  }
+}
+
+document.getElementById("connect").onclick = connectWallet;
+document.getElementById("disconnect").onclick = disconnectWallet;
+document.getElementById("claim").onclick = claimTokens;
+
+window.addEventListener("load", async () => {
+  if (window.ethereum) {
+    try {
+      provider = new ethers.BrowserProvider(window.ethereum);
+      signer = await provider.getSigner();
+      walletAddress = await signer.getAddress();
+      contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
+      updateUIConnected(walletAddress);
+    } catch (err) {
+      console.warn("Auto-connect failed:", err);
+    }
+  }
 
   setTimeout(() => {
     window.postMessage({ type: "checkExtension" }, "*");
   }, 1000);
-
 
   setInterval(() => {
     if (extensionConnected) {
@@ -360,8 +333,6 @@
     }
   }, 5000);
 });
-
-
 
 document.getElementById("status").onclick = () => {
   if (!walletAddress) return;
@@ -373,8 +344,8 @@ document.getElementById("status").onclick = () => {
     setTimeout(() => statusEl.innerText = original, 2000);
   });
 };
+</script>
 
-  </script>
 
 
 <script>
