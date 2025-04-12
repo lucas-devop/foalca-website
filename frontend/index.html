@@ -9,8 +9,20 @@
   <script src="https://cdn.jsdelivr.net/npm/ethers@6.6.2/dist/ethers.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   
-  
   <link rel="icon" type="image/png" href="favicon.png">
+
+<script>
+  const current = window.location.hostname;
+  if (
+    current === "foalca-website.onrender.com" ||
+    current === "foalca.com" ||
+    current === "www.foalca.com" ||
+    current === "www.forallcases.com"
+  ) {
+    window.location.href = "https://forallcases.com" + window.location.pathname + window.location.search + window.location.hash;
+  }
+</script>
+
 
 </head>
 <body>
@@ -206,7 +218,7 @@
       "function claimRewardWithSignature(uint256 amount, uint256 nonce, bytes signature) external"
     ];
 
-    const SIGNING_API = "http://localhost:4000/sign"; // aktualizováno na port 4000
+    const SIGNING_API = "https://foalca-sign-server.onrender.com/sign";
 
     let walletAddress = null;
     let provider, signer, contract;
@@ -285,7 +297,7 @@
     document.getElementById("disconnect").onclick = disconnectWallet;
     document.getElementById("claim").onclick = claimTokens;
 
-    // Extension logic
+    // Extension
     let extensionConnected = false;
 
     document.getElementById("addExtension").onclick = () => {
@@ -304,7 +316,6 @@
         document.getElementById("addExtension").style.display = "none";
         document.getElementById("removeExtension").style.display = "inline-block";
 
-        // Požádej o body hned po připojení
         window.postMessage({ type: "getPoints" }, "*");
       }
 
@@ -312,8 +323,8 @@
     const displayEl = document.getElementById("pointsStatus");
 
     if (currentPoints !== event.data.points) {
-      displayEl.classList.remove("pulse"); // reset animace
-      void displayEl.offsetWidth;          // reflow pro animaci
+      displayEl.classList.remove("pulse"); 
+      void displayEl.offsetWidth;      
       displayEl.classList.add("pulse");
     }
 
@@ -336,12 +347,12 @@
         }
       }
 
-      // Pošli ping rozšíření
+
   setTimeout(() => {
     window.postMessage({ type: "checkExtension" }, "*");
   }, 1000);
 
-  // 🔁 Automatický refresh každých 5s
+
   setInterval(() => {
     if (extensionConnected) {
       window.postMessage({ type: "getPoints" }, "*");
@@ -350,7 +361,7 @@
 });
 
 
-// Kliknutí na adresu = kopírování
+
 document.getElementById("status").onclick = () => {
   if (!walletAddress) return;
 
