@@ -342,7 +342,7 @@ document.getElementById("claim").onclick = claimTokens;
     }
 
     currentPoints = event.data.points;
-    displayEl.innerText = `⛏️ Tokens: ${currentPoints}`;
+    displayEl.innerText = `⛏️ Tokens: ${currentPoints.toLocaleString('en-US')}`;
   }
 });
 
