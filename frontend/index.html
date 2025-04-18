@@ -42,6 +42,39 @@
     <a href="#socials">Social Networks</a>
   </nav>
 
+
+    <div id="walletModal" class="wallet-modal" style="display:none;">
+    <div class="wallet-modal-content">
+      <h2>Connect Wallet</h2>
+      <div class="wallet-options">
+  
+        <div class="wallet-option" id="connectMetaMask">
+          <img src="metamask-icon.png" alt="MetaMask" />
+          <span>MetaMask</span>
+        </div>
+  
+        <div class="wallet-option" id="connectCoinbase">
+          <img src="coinbase-icon.png" alt="Coinbase Wallet" />
+          <span>Coinbase Wallet</span>
+        </div>
+  
+        <div class="wallet-option" id="connectTrust">
+          <img src="trustwallet-icon.png" alt="Trust Wallet" />
+          <span>Trust Wallet</span>
+        </div>
+  
+        <div class="wallet-option" id="connectWalletConnect">
+          <img src="walletconnect-icon.png" alt="WalletConnect" />
+          <span>WalletConnect (QR)</span>
+        </div>
+  
+        <button id="closeWalletModal" class="glow-btn danger" style="margin-top: 15px;">Close</button>
+  
+      </div>
+    </div>
+  </div>
+  
+
   <section id="wallet" class="wallet-container">
   <h1>🦊 FOALCA Wallet Interface</h1>
 
@@ -453,6 +486,87 @@ document.getElementById("status").onclick = () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   });
+</script>
+
+
+
+<!-- Wallet Modal - JS -->
+<script src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
+
+<script>
+
+const walletModal = document.getElementById("walletModal");
+const connectBtn = document.getElementById("connect");
+connectBtn.onclick = () => walletModal.style.display = "flex";
+
+const closeModalBtn = document.getElementById("closeWalletModal");
+closeModalBtn.onclick = () => walletModal.style.display = "none";
+
+
+async function connectWallet(wallet) {
+  if (!window.ethereum) return alert("No Ethereum provider found.");
+
+  let providerToUse = null;
+
+
+  if (window.ethereum.providers?.length) {
+    for (const p of window.ethereum.providers) {
+      if (wallet === 'metamask' && p.isMetaMask) providerToUse = p;
+      if (wallet === 'coinbase' && p.isCoinbaseWallet) providerToUse = p;
+      if (wallet === 'trust' && p.isTrust) providerToUse = p;
+    }
+  } else {
+
+    providerToUse = window.ethereum;
+  }
+
+  if (!providerToUse) {
+    alert(`Selected wallet (${wallet}) not found!`);
+    return;
+  }
+
+  try {
+    provider = new ethers.BrowserProvider(providerToUse);
+    signer = await provider.getSigner();
+    walletAddress = await signer.getAddress();
+    contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
+    updateUIConnected(walletAddress);
+    walletModal.style.display = "none";
+  } catch (err) {
+    console.error(err);
+    alert(`Failed to connect to ${wallet}.`);
+  }
+}
+
+
+async function connectWalletConnect() {
+  try {
+    const wcProvider = new window.WalletConnectProvider.default({
+      rpc: {
+        56: "https://bsc-dataseed.binance.org/"
+      }
+    });
+
+    await wcProvider.enable();
+    provider = new ethers.BrowserProvider(wcProvider);
+    signer = await provider.getSigner();
+    walletAddress = await signer.getAddress();
+    contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
+    updateUIConnected(walletAddress);
+    walletModal.style.display = "none";
+
+  } catch (err) {
+    console.error(err);
+    alert("Failed to connect via WalletConnect.");
+  }
+}
+
+
+document.getElementById("connectMetaMask").onclick = () => connectWallet('metamask');
+document.getElementById("connectCoinbase").onclick = () => connectWallet('coinbase');
+document.getElementById("connectTrust").onclick = () => connectWallet('trust');
+document.getElementById("connectWalletConnect").onclick = connectWalletConnect;
+
 </script>
 
 
