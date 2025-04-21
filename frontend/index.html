@@ -326,36 +326,48 @@ async function claimTokens() {
     if (!data.signature || !data.nonce) throw new Error("Invalid response from signing API");
 
     const amount = ethers.parseUnits(currentPoints.toString(), 18);
-    const tx = await contract.claimRewardWithSignature(amount, data.nonce, data.signature);
+    const claimedAmount = currentPoints;
 
+    const tx = await contract.claimRewardWithSignature(amount, data.nonce, data.signature);
     console.log("⏳ Waiting for transaction confirmation...");
     await tx.wait();
 
-    alert("✅ FOALCA claimed successfully!");
+    console.log("✅ Transaction confirmed!");
+
+    try {
+      const webhookResponse = await fetch("https://discord.com/api/webhooks/1363779241942188052/tfs6lEe_RLMuWM4gfMQmN1uPbAvnJRWawr3TFIT1QPQy4oa_8eqS1VDyZEzcg4ps-csC", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          embeds: [
+            {
+              title: "🎉 Successful FOALCA Claim!",
+              description: "A user has successfully claimed FOALCA tokens!",
+              color: 0x1abc9c,
+              fields: [
+                { name: "Wallet", value: walletAddress, inline: true },
+                { name: "Amount", value: `${claimedAmount} FOALCA`, inline: true }
+              ],
+              timestamp: new Date().toISOString()
+            }
+          ]
+        })
+      });
+
+      if (!webhookResponse.ok) {
+        console.warn("⚠️ Discord webhook failed. Status:", webhookResponse.status);
+      } else {
+        console.log("✅ Discord notification sent!");
+      }
+    } catch (webhookError) {
+      console.error("❌ Failed to send webhook:", webhookError);
+    }
+
     currentPoints = 0;
     document.getElementById("pointsStatus").innerText = "⛏️ Tokens: 0";
     window.postMessage({ type: "resetPoints" }, "*");
 
-    await fetch("https://discord.com/api/webhooks/1363779241942188052/tfs6lEe_RLMuWM4gfMQmN1uPbAvnJRWawr3TFIT1QPQy4oa_8eqS1VDyZEzcg4ps-csC", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        embeds: [
-          {
-            title: "🎉 Successful FOALCA Claim!",
-            description: "A user has successfully claimed FOALCA tokens!",
-            color: 0x1abc9c,
-            fields: [
-              { name: "Wallet", value: walletAddress, inline: true },
-              { name: "Amount", value: `${currentPoints} FOALCA`, inline: true }
-            ],
-            timestamp: new Date().toISOString()
-          }
-        ]
-      })
-    });
-
-    console.log("✅ Discord notification sent!");
+    alert("✅ FOALCA claimed successfully!");
 
   } catch (err) {
     console.error("❌ Claim failed:", err);
