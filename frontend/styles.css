@@ -679,3 +679,28 @@ html, body {
   background-color: #00857e;
   transform: scale(1.1);
 }
+
+
+.analysis-bar {
+  background-color: #222;
+  padding: 6px 12px;
+  text-align: center;
+  margin: 10px auto;
+  width: fit-content;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.3);
+}
+
+.analysis-link {
+  color: #f2f2f2;
+  text-decoration: none;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.analysis-link:hover {
+  text-decoration: underline;
+}
+
