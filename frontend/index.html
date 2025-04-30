@@ -94,6 +94,9 @@
 </section>
 
 
+<div class="overview-wrapper">
+  <img src="global-icon.png" alt="Global Icon" class="side-icon icon-left">
+
 <section id="overview">
   <h2>🔍 Token Overview</h2>
 
@@ -118,6 +121,11 @@
   </div>
 
 </section>
+
+ <img src="pc-icon.png" alt="PC Icon" class="side-icon icon-right">
+</div>
+
+  
 
 <section id="rewards" class="rewards-section">
 
@@ -611,6 +619,19 @@ document.getElementById("connectCoinbase").onclick = () => connectWallet('coinba
 document.getElementById("connectTrust").onclick = () => connectWallet('trust');
 document.getElementById("connectWalletConnect").onclick = connectWalletConnect;
 
+</script>
+
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const overview = document.getElementById("overview");
+    const rect = overview.getBoundingClientRect();
+    const scrollTop = window.scrollY || window.pageYOffset;
+    const topOffset = rect.top + scrollTop;
+
+    document.documentElement.style.setProperty('--overview-top', `${topOffset}px`);
+  });
 </script>
 
 
