@@ -414,30 +414,29 @@ window.addEventListener("message", (event) => {
 
   if (data?.type === "extensionPing" || data?.type === "currentPoints") {
     if (data.extensionId !== OFFICIAL_EXTENSION_ID) {
-      console.warn("\u26A0\uFE0F An unauthorized extension has been blocked.");
+      console.warn("\u26A0\uFE0F Neautorizované rozšíření bylo zablokováno.");
       return;
     }
-    
-      if (event.data && event.data.type === "extensionPing") {
-        extensionConnected = true;
-        document.getElementById("extensionStatus").innerText = "✅ Tracker extension connected";
-        document.getElementById("addExtension").style.display = "none";
-        document.getElementById("removeExtension").style.display = "inline-block";
 
-        window.postMessage({ type: "getPoints" }, "*");
-      }
-
-      if (event.data && event.data.type === "currentPoints") {
-    const displayEl = document.getElementById("pointsStatus");
-
-    if (currentPoints !== event.data.points) {
-      displayEl.classList.remove("pulse");
-      void displayEl.offsetWidth;       
-      displayEl.classList.add("pulse");
+    if (data.type === "extensionPing") {
+      extensionConnected = true;
+      document.getElementById("extensionStatus").innerText = "✅ Tracker extension connected";
+      document.getElementById("addExtension").style.display = "none";
+      document.getElementById("removeExtension").style.display = "inline-block";
     }
 
-    currentPoints = event.data.points;
-    displayEl.innerText = `⛏️ Tokens: ${currentPoints.toLocaleString('en-US')}`;
+    if (data.type === "currentPoints") {
+      const displayEl = document.getElementById("pointsStatus");
+
+      if (currentPoints !== data.points) {
+        displayEl.classList.remove("pulse");
+        void displayEl.offsetWidth;
+        displayEl.classList.add("pulse");
+      }
+
+      currentPoints = data.points;
+      displayEl.innerText = `⛏️ Tokens: ${currentPoints.toLocaleString('en-US')}`;
+    }
   }
 });
 
