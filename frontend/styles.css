@@ -748,3 +748,52 @@ html, body {
   text-decoration: underline;
 }
 
+
+
+
+.fundraising-section {
+  position: relative;
+  padding: 40px;
+  background: #000;
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+}
+
+.fundraising-background-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(0,255,200,0.2), transparent 70%);
+  animation: rotateGlow 20s linear infinite;
+  z-index: 0;
+}
+
+@keyframes rotateGlow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.fundraising-content {
+  position: relative;
+  z-index: 1;
+}
+
+.fundraising-bar {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  background: #222;
+  border: 2px solid #0ff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 30px;
+  background: linear-gradient(90deg, #00e0ff, #00ffa2);
+  width: 0%;
+  transition: width 1s ease-in-out;
+}
