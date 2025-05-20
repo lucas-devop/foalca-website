@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fundraising and Early-Stage Offers | FOALCA</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #ffffff);
+      color: #333;
+      overflow-x: hidden;
+    }
+
+        header {
+      background-color: #004d40;
+      color: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+      animation: slideIn 1s ease;
+    }
+
+    .header-logo {
+      display: inline-block;
+      vertical-align: middle;
+      width: 48px;
+      height: 48px;
+      margin-right: 12px;
+    }
+
+    .header-title {
+      display: inline-block;
+      font-size: 2.5rem;
+      vertical-align: middle;
+    }
+
+    .section {
+      padding: 4rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+      animation: fadeInUp 1s ease both;
+    }
+
+    .section:nth-child(even) {
+      background-color: #f1f1f1;
+    }
+
+    h2 {
+      color: #00695c;
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+    }
+
+    p, li {
+      line-height: 1.7;
+      font-size: 1.1rem;
+    }
+
+    ul {
+      margin: 1rem 0 2rem 1.5rem;
+    }
+
+    .highlight {
+      background: #e0f2f1;
+      padding: 1rem;
+      border-left: 6px solid #00796b;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      padding: 2rem;
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+    }
+
+    .card h3 {
+      color: #004d40;
+      margin-bottom: 1rem;
+    }
+
+    .card .amount {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #c13a3a;
+      margin-bottom: 0.8rem;
+    }
+
+    .card .desc {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: #004d40;
+      color: #fff;
+      font-size: 0.9rem;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    
+    .funding-highlight {
+    background: transparent;
+    color: #ffffff;
+    text-align: center;
+    padding: 6rem 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+
+    .flash-container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .flash-text {
+      font-size: 1.4rem;
+      letter-spacing: 2px;
+      color: #053732;
+      margin-bottom: 1rem;
+      animation: pulseText 2s ease-in-out infinite;
+    }
+
+    .flash-amount {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: #008777;
+      text-shadow: 0 0 12px rgba(0,255,200,0.7), 0 0 30px rgba(0,255,200,0.4);
+      animation: glowLoop 5s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseText {
+      0%, 100% { opacity: 0.9; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); }
+    }
+
+    @keyframes glowLoop {
+      0% { text-shadow: 0 0 12px rgba(0,255,200,0.7), 0 0 30px rgba(0,255,200,0.4); transform: scale(1); }
+      100% { text-shadow: 0 0 20px rgba(0,255,255,1), 0 0 60px rgba(0,255,255,0.8); transform: scale(1.07); }
+    }
+
+
+    .special-announcement {
+      background: linear-gradient(135deg, #e0f2f1, #ffffff);
+      border-top: 4px dashed #00695c;
+    }
+
+    .notice-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+
+    .notice-box {
+      flex: 1 1 300px;
+      background: #ffffff;
+      border-left: 6px solid #00796b;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border-radius: 10px;
+      animation: popInBox 1s ease both;
+    }
+
+    .notice-box h3 {
+      color: #004d40;
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+    }
+
+    .notice-box p {
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    .notice-box a {
+      color: #00695c;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .notice-box a:hover {
+      text-decoration: underline;
+    }
+
+    @keyframes popInBox {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1><img src="favicon.png" alt="FOALCA Logo" class="header-logo"><span class="header-title">Fundraising & Early-stage Offers</span></h1>
+    <p>Powering the future of internet activity rewards</p>
+  </header>
+
+  <section class="section">
+    <h2>About FOALCA</h2>
+    <p>ForAllCases is a deflationary utility token that focuses on rewarding real internet activity. It relies on transparency, community, and a clear vision for long-term adoption and real-world value.</p>
+  </section>
+
+  <section class="section">
+    <h2>Launch Requirements & Funding Goals</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Development</h3>
+        <div class="amount">$1,000,000</div>
+        <div class="desc">For platform & tech growth | costs of development and operation of all platforms, servers</div>
+      </div>
+      <div class="card">
+        <h3>Marketing</h3>
+        <div class="amount">$450,000</div>
+        <div class="desc">to build the user base and launch long-term campaigns for about 5 - 6 years</div>
+      </div>
+      <div class="card">
+        <h3>Security Audits</h3>
+        <div class="amount">$50,000</div>
+        <div class="desc">for high-level external audits | if there are funds left after the audit, they will be added to liquidity</div>
+      </div>
+      <div class="card">
+        <h3>Liquidity</h3>
+        <div class="amount">$1,000,000</div>
+        <div class="desc">to reach the DEX listing price of $0.00005 | ForAllCases will be listed on PancakeSwap.</div>
+      </div>
+      <div class="card">
+        <h3>Rewards</h3>
+        <div class="amount">$1,000,000</div>
+        <div class="desc">share for the team | but with zero FOALCA token share and with no risk of rug pull</div>
+      </div>
+    </div>
+  </section>
+
+    <section-highlight class="section funding-highlight">
+    <div class="flash-container">
+      <div class="flash-text">Total Funding Goal</div>
+      <div class="flash-amount">$3,500,000</div>
+    </div>
+  </section-highlight>
+
+  <section class="section">
+    <h2>Investor Benefits</h2>
+    <ul>
+      <li>✅ 15% of total supply (15B FOALCA)</li>
+      <li>✅ Lifetime zero-fee FOALCA usage ($10,000+)</li>
+      <li>✅ Governance rights with veto power for top 5 investors (Board membership)</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>Price Milestones</h2>
+    <div class="highlight">
+      <p><strong>Initial:</strong> $0.00005 (after DEX listing)</p>
+      <p><strong>Deflationary goal:</strong> $0.001 - $0.005</p>
+      <p><strong>Long-term target:</strong> $0.01+</p>
+    </div>
+    <p>Burn mechanisms will reduce supply over time, increasing value and stabilizing market behavior. Up to 30% of total supply is planned to be burned in future years.</p>
+  </section>
+
+  <section class="section">
+    <h2>FOALCA Fundraising vs classic pre-sale</h2>
+    <p>No side smart contracts, no fake tokens, no TGE. For supporting our project you will receive official FOALCA tokens that will be in circulation and are already minted.</p>
+  </section>
+
+  <section class="section">
+    <h2>Referral program</h2>
+    <p>We provide referral cooperation and you can get extra free tokens for bringing an investor and sharing the ForAllCases project.</p>
+  </section>
+
+  <section class="section">
+    <h2>Individual offers</h2>
+    <p>All your investment offers will be completely individual. We do not provide any direct "pre-sale inputs". We want this fundraising to be completely trustworthy and not have the uncertain atmosphere of many meme pre-sales.</p>
+  </section>
+
+    <section class="section special-announcement">
+    <div class="notice-grid">
+      <div class="notice-box">
+        <h3>Minimum Investment</h3>
+        <p>Each investment offer must be at least <strong>$100</strong>.</p>
+      </div>
+      <div class="notice-box">
+        <h3>Fundraising End</h3>
+        <p>After the planned total amount is raised <strong>the fundraising will end.</strong> No further investments will be accepted afterward.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section special-announcement">
+    <div class="notice-grid">
+      <div class="notice-box">
+        <h3>Submit your offers</h3>
+        <p><strong>Telegram:</strong> @lucas_devop</p>
+        <p><strong>Discord:</strong> lucas_devop</p>
+        <p><strong>Email:</strong> <a href="mailto:support@foalca.com">support@foalca.com</a></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 ForAllCases.com — All rights reserved</p>
+  </footer>
+</body>
+</html>
