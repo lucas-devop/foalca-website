@@ -74,6 +74,39 @@
   </div>
   
 
+
+    <section id="fundraising" class="fundraising-section">
+  <div class="fundraising-background-glow"></div>
+  <div class="fundraising-content">
+    <h2>🚀 Early-stage offer</h2>
+    <p>Fundraising along with an early-stage offering.</p>
+    <div class="fundraising-bar">
+      <div class="progress" id="fundraisingProgress"></div>
+    </div>
+    <p id="goalReachedMessage" style="display:none; font-size: 24px; color: gold; font-weight: bold;">
+  🎯 GOAL ACHIEVED! Thank you for your support!
+</p>
+
+<p id="fundraisingStatus" style="font-size: 20px;">
+  💰 Raised: 
+  <span id="fundsRaised" style="font-size: 28px; font-weight: bold; color: #00ffe0;"></span>
+</p>
+
+
+   <p style="margin-top: 20px; font-size: 18px;">
+      👉 To join, visit: 
+      <a href="http://localhost/forallcases.com/fundraising-offers.html" 
+         target="_blank" 
+         style="color: #00ffe0; text-decoration: underline;">
+        Fundraising and offers
+      </a>
+    </p>
+
+  </div>
+</section>
+  
+  
+
   <section id="wallet" class="wallet-container">
   <h1>🦊 FOALCA Wallet Interface</h1>
 
@@ -641,6 +674,62 @@ document.getElementById("connectWalletConnect").onclick = connectWalletConnect;
 
     document.documentElement.style.setProperty('--overview-top', `${topOffset}px`);
   });
+</script>
+
+
+
+<script>
+const fundraisingAddress = "0x8280C62D83150B2962f27B631b224F8c7Ca3EF0a";
+const USDT_ADDRESS = "0x55d398326f99059fF775485246999027B3197955";
+const USDC_ADDRESS = "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d";
+const ERC20_ABI = ["function balanceOf(address) view returns (uint256)", "function decimals() view returns (uint8)"];
+const TARGET_USD = 3500000;
+
+async function loadFundraisingBalance() {
+  try {
+    const provider = new ethers.JsonRpcProvider("https://bsc-dataseed.binance.org/");
+
+    const usdtContract = new ethers.Contract(USDT_ADDRESS, ERC20_ABI, provider);
+    const usdcContract = new ethers.Contract(USDC_ADDRESS, ERC20_ABI, provider);
+
+    const [usdtBalanceRaw, usdcBalanceRaw, usdtDecimals, usdcDecimals] = await Promise.all([
+      usdtContract.balanceOf(fundraisingAddress),
+      usdcContract.balanceOf(fundraisingAddress),
+      usdtContract.decimals(),
+      usdcContract.decimals(),
+    ]);
+
+    const usdt = Number(ethers.formatUnits(usdtBalanceRaw, usdtDecimals));
+    const usdc = Number(ethers.formatUnits(usdcBalanceRaw, usdcDecimals));
+    const totalUSD = Math.round(usdt + usdc);
+
+    const rawPercent = (totalUSD / TARGET_USD) * 100;
+    const percentage = Math.min(100, rawPercent).toFixed(1);
+
+    const bar = document.getElementById("fundraisingProgress");
+    const status = document.getElementById("fundraisingStatus");
+    const goalMessage = document.getElementById("goalReachedMessage");
+
+    bar.style.width = `${percentage}%`;
+    status.innerHTML = `💰 Raised: <span id="fundsRaised" style="font-size: 22px; font-weight: bold; color: #ff534f;">$${totalUSD.toLocaleString()}</span> / $${TARGET_USD.toLocaleString()} <span style="font-size: 14px; color: #aaa;">(${rawPercent.toFixed(1)}%)</span>`;
+
+
+    if (rawPercent >= 100) {
+      bar.style.background = "linear-gradient(90deg, gold, orange)";
+      goalMessage.style.display = "block";
+    } else {
+      bar.style.background = "linear-gradient(90deg, #00e0ff, #00ffa2)";
+      goalMessage.style.display = "none";
+    }
+
+  } catch (err) {
+    console.error("⚠️ Error loading fundraising:", err);
+    document.getElementById("fundraisingStatus").innerText = "❌ Failed to load data.";
+  }
+}
+
+setInterval(loadFundraisingBalance, 5000);
+window.addEventListener("load", loadFundraisingBalance);
 </script>
 
 
