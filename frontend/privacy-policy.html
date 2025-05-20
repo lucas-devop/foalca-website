@@ -1,34 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Privacy Policy | FOALCA</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="favicon.png" />
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap');
+
     body {
-      font-family: sans-serif;
-      padding: 40px;
-      line-height: 1.6;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ffffff;
+      margin: 0;
+      padding: 2rem;
       color: #333;
-      background-color: #f9f9f9;
     }
 
-    h1, h2 {
-      color: #222;
-    }
-
-    a {
-      color: #29b6f6;
+    html {
+      scroll-behavior: smooth;
     }
 
     .container {
+      max-width: 860px;
+      margin: auto;
+      background: #fff;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0, 105, 92, 0.1);
+      animation: fadeIn 0.8s ease;
+    }
+
+    h1 {
+      font-size: 32px;
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 22px;
+      color: #00695c;
+      margin-top: 30px;
+      border-left: 6px solid #00796b;
+      padding-left: 12px;
+    }
+
+    p, li {
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    ul {
+      margin-left: 1.5rem;
+      margin-top: 10px;
+    }
+
+    li::marker {
+      color: #29b6f6;
+    }
+
+    a {
+      color: #1976d2;
+      text-decoration: underline;
+      transition: color 0.2s ease;
+    }
+
+    a:hover {
+      color: #0d47a1;
+    }
+
+    strong {
+      color: #004d40;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 12px 24px;
+      background: #d21919;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 0 12px rgba(210, 25, 25, 0.4);
+    }
+
+    .back-btn:hover {
+      background: #a10d0d;
+      transform: scale(1.05);
+      color: #45ffe9;
+    }
+
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 999;
+      background-color: #015c57;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      padding: 12px 16px;
+      font-size: 25px;
+      cursor: pointer;
+      display: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    #scrollTopBtn:hover {
+      background-color: #00857e;
+      transform: scale(1.1);
+    }
+
+    footer {
+      background: #111;
+      color: #ccc;
+      padding: 40px 20px;
+      text-align: center;
+      font-size: 16px;
+      margin-top: 80px;
+    }
+
+    footer .footer-container {
       max-width: 800px;
       margin: auto;
-      background: white;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+
+    footer p {
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    footer p.disclaimer-title {
+      font-weight: bold;
+      color: #ff5555;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    footer a {
+      color: #29b6f6;
+      text-decoration: underline;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: #ffffff;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -67,6 +190,34 @@
 
     <h2>7. Contact</h2>
     <p>If you have questions about this privacy policy or your data, contact us via our official communication channels listed on the <a href="https://forallcases.com">homepage</a>.</p>
+
+    <a class="back-btn" href="index.html">← Back to Homepage</a>
   </div>
+
+  <button onclick="scrollToTop()" id="scrollTopBtn" title="Go to top">☝️</button>
+
+  <footer>
+    <div class="footer-container">
+      <p class="disclaimer-title">Disclaimer</p>
+      <p>ForAllCases ($FOALCA) is a utility token intended for experimental, educational, and reward-based purposes only. It is not an investment product, security, or financial instrument. We do not guarantee any future value, listing, or tradability. The token is distributed freely to users based on real activity. Use at your own risk.</p>
+      <p>View our <a href="https://forallcases.com">Homepage</a>.</p>
+    </div>
+  </footer>
+
+  <script>
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+    window.onscroll = () => {
+      if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        scrollTopBtn.style.display = "block";
+      } else {
+        scrollTopBtn.style.display = "none";
+      }
+    };
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
 </body>
 </html>
