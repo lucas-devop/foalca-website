@@ -653,7 +653,6 @@ document.getElementById("connectWalletConnect").onclick = connectWalletConnect;
 
 <script>
 const fundraisingAddress = "0x8280C62D83150B2962f27B631b224F8c7Ca3EF0a";
-const USDT_ADDRESS = "0x55d398326f99059fF775485246999027B3197955";
 const USDC_ADDRESS = "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d";
 const ERC20_ABI = ["function balanceOf(address) view returns (uint256)", "function decimals() view returns (uint8)"];
 const TARGET_USD = 3500000;
@@ -662,19 +661,15 @@ async function loadFundraisingBalance() {
   try {
     const provider = new ethers.JsonRpcProvider("https://bsc-dataseed.binance.org/");
 
-    const usdtContract = new ethers.Contract(USDT_ADDRESS, ERC20_ABI, provider);
     const usdcContract = new ethers.Contract(USDC_ADDRESS, ERC20_ABI, provider);
 
-    const [usdtBalanceRaw, usdcBalanceRaw, usdtDecimals, usdcDecimals] = await Promise.all([
-      usdtContract.balanceOf(fundraisingAddress),
+    const [usdcBalanceRaw, usdcDecimals] = await Promise.all([
       usdcContract.balanceOf(fundraisingAddress),
-      usdtContract.decimals(),
       usdcContract.decimals(),
     ]);
 
-    const usdt = Number(ethers.formatUnits(usdtBalanceRaw, usdtDecimals));
     const usdc = Number(ethers.formatUnits(usdcBalanceRaw, usdcDecimals));
-    const totalUSD = Math.round(usdt + usdc);
+    const totalUSD = Math.round(usdc);
 
     const rawPercent = (totalUSD / TARGET_USD) * 100;
     const percentage = Math.min(100, rawPercent).toFixed(1);
@@ -685,7 +680,6 @@ async function loadFundraisingBalance() {
 
     bar.style.width = `${percentage}%`;
     status.innerHTML = `💰 Raised: <span id="fundsRaised" style="font-size: 22px; font-weight: bold; color: #ff534f;">$${totalUSD.toLocaleString()}</span> / $${TARGET_USD.toLocaleString()} <span style="font-size: 14px; color: #aaa;">(${rawPercent.toFixed(1)}%)</span>`;
-
 
     if (rawPercent >= 100) {
       bar.style.background = "linear-gradient(90deg, gold, orange)";
@@ -704,6 +698,7 @@ async function loadFundraisingBalance() {
 setInterval(loadFundraisingBalance, 5000);
 window.addEventListener("load", loadFundraisingBalance);
 </script>
+
 
 
 
