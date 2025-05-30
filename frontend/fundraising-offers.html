@@ -225,6 +225,240 @@
       to { transform: scale(1); opacity: 1; }
     }
 
+    
+
+      .enhanced-box {
+  background: #ffffff;
+  padding: 2rem;
+  border-left: 5px solid #009688;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.enhanced-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccd7d8;
+  border-radius: 10px;
+  margin-top: 0.4rem;
+  margin-bottom: 1rem;
+  background-color: #fdfdfd;
+  transition: border-color 0.25s ease;
+}
+
+.input-field:focus {
+  border-color: #009688;
+  outline: none;
+  background-color: #ffffff;
+}
+
+.currency-option {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 1.5rem;
+  font-weight: 900;
+  font-size: 1rem;
+  color: rgb(8 113 177);
+  gap: 6px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.currency-option img {
+  height: 22px;
+  border-radius: 50%;
+  box-shadow: 0 0 3px rgba(0,0,0,0.1);
+}
+
+.currency-option:hover {
+  color: #00796b;
+}
+
+.price-display {
+  font-weight: 600;
+  color: #00695c;
+  margin-top: 12px;
+  font-size: 1.05rem;
+}
+
+.bonus-text {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #00897b;
+  background: #e0f2f1;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  box-shadow: inset 0 0 6px rgba(0,255,255,0.15);
+  text-align: center;
+}
+
+.lifetime-benefit {
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.lifetime-benefit::before {
+  content: '🎁 ';
+}
+
+.wallet-highlight {
+    background: #ffffff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-top: 2rem;
+    text-align: center;
+    animation: fadeIn 0.8s ease-in;
+}
+
+.wallet-highlight p {
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: #004d40;
+  margin-bottom: 0.6rem;
+}
+
+.wallet-address {
+  font-size: 1.3rem;
+  word-break: break-word;
+  font-family: 'Courier New', monospace;
+  background: #ffffff;
+  padding: 1rem 1.2rem;
+  border-radius: 8px;
+  border: 1px solid #cce5e2;
+  box-shadow: 0 0 10px rgba(0, 150, 136, 0.08);
+  color: #00796b;
+  transition: background 0.3s ease;
+  text-align: center;
+}
+
+.wallet-address:hover {
+  background: #f5fefc;
+  color: #004d40;
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+.lifetime-box {
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  margin-top: 1rem;
+  border-radius: 8px;
+  background: #fff8e1;
+  color: #a77b00;
+  border-left: 5px solid #ffc107;
+  box-shadow: inset 0 0 4px rgba(255, 193, 7, 0.2);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.lifetime-box::before {
+  content: '💎 ';
+}
+
+.lifetime-box.active {
+  background: #e0f7e9;
+  color: #006d3c;
+  border-left-color: #4caf50;
+  box-shadow: inset 0 0 6px rgba(76, 175, 80, 0.2);
+}
+
+
+.instructions-box {
+  background: linear-gradient(135deg, #e3f2fd, #ffffff);
+  border-left: 5px solid #1976d2;
+  padding: 1.2rem 1.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  color: #0d47a1;
+  box-shadow: 0 4px 12px rgba(25, 118, 210, 0.15);
+  font-weight: 600;
+  text-align: center;
+  transition: background 0.3s ease;
+}
+
+.instructions-box:hover {
+  background: linear-gradient(135deg, #d0e8ff, #ffffff);
+}
+
+
+.wallet-network-warning {
+    margin-top: 1rem;
+    background: #fff0f0;
+    color: #c13a3a;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(255, 193, 7, 0.1);
+}
+
+
+.contact-support-section {
+  background: linear-gradient(to right, #f0f4ff, #ffffff);
+  border-top: 4px solid #1976d2;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.contact-box {
+  background: #ffffff;
+  padding: 2rem 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(25, 118, 210, 0.1);
+  text-align: center;
+}
+
+.contact-message {
+  background: #e3f2fd;
+  border-left: 6px solid #1976d2;
+  color: #0d47a1;
+  padding: 1.2rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  transition: background 0.3s ease;
+}
+
+.contact-message:hover {
+  background: #d0e8ff;
+}
+
+.contact-box p {
+  font-size: 1.05rem;
+  margin: 0.4rem 0;
+  color: #003366;
+}
+
+.contact-box a {
+  color: #1976d2;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.contact-box a:hover {
+  text-decoration: underline;
+}
+
   </style>
 </head>
 <body>
@@ -324,16 +558,173 @@
     </div>
   </section>
 
-  <section class="section special-announcement">
-    <div class="notice-grid">
-      <div class="notice-box">
-        <h3>Submit your offers</h3>
-        <p><strong>Telegram:</strong> @lucas_devop</p>
-        <p><strong>Discord:</strong> lucas_devop</p>
-        <p><strong>Email:</strong> <a href="mailto:support@foalca.com">support@foalca.com</a></p>
-      </div>
+
+  <section class="section special-announcement enhanced-offer">
+  <div class="notice-grid">
+    <div class="notice-box enhanced-box">
+      <h3>Submit your offers</h3>
+
+      <form id="investment-form" onsubmit="return false;">
+        <label for="amount">Investment amount (min. $100):</label><br />
+        <input type="number" id="amount" step="0.0001" value="0.1" required class="input-field" />
+
+        <label>Choose currency:</label><br />
+        <label class="currency-option">
+          <input type="radio" name="currency" value="USDC" checked />
+          <img src="usdc-icon.png" alt="USDC" />
+          USDC
+        </label>
+        <label class="currency-option">
+          <input type="radio" name="currency" value="BNB" />
+          <img src="bnb-icon.png" alt="BNB" />
+          BNB
+        </label><br /><br />
+
+        <div id="bnb-price-display" class="price-display">
+          Current BNB price: <span id="bnb-price-value">$...</span>
+        </div><br />
+
+        <label for="foalca">FOALCA tokens you expect (min. 500,000):</label><br />
+        <input type="number" id="foalca" min="500000" step="1" value="500000" required class="input-field" /><br /><br />
+
+        <div id="bonus-text" class="bonus-text">
+          +200,000 bonus FOALCA!
+        </div><br />
+
+        <div id="lifetime-benefit" class="lifetime-box">
+          Lifetime zero taxes: ❌
+        </div>
+      </form>
+
+<div class="wallet-highlight">
+  <p>Send your chosen amount to this wallet:</p>
+  <div id="wallet-address" class="wallet-address" style="cursor: pointer;" title="Click to copy">
+    0x8280C62D83150B2962f27B631b224F8c7Ca3EF0a
+  </div>
+  <div class="wallet-network-warning">
+    ⚠️ Please make sure to send your contribution via <strong>Binance Smart Chain (BEP-20)</strong> only!
+  </div>
+</div>
+</section>
+  
+  
+<section class="section contact-support-section">
+  <div class="contact-box">
+    <div class="contact-message">
+      📩 If you have supported the ForAllCases project, please send us your wallet address and the amount you contributed. You will receive your FOALCA tokens in the same wallet.
     </div>
-  </section>
+
+    <p><strong>Telegram:</strong> @lucas_devop</p>
+    <p><strong>Discord:</strong> lucas_devop</p>
+    <p><strong>Email:</strong> <a href="mailto:support@foalca.com">support@foalca.com</a></p>
+  </div>
+</section>
+
+
+
+<script>
+  const amountInput = document.getElementById('amount');
+  const foalcaInput = document.getElementById('foalca');
+  const bonusText = document.getElementById('bonus-text');
+  const lifetimeBenefit = document.getElementById('lifetime-benefit');
+  const bnbPriceDisplay = document.getElementById('bnb-price-value');
+  const currencyRadios = document.getElementsByName('currency');
+
+  let bnbPriceUSD = 0;
+
+  async function fetchBNBPrice() {
+    try {
+      const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=usd');
+      const data = await response.json();
+      bnbPriceUSD = data.binancecoin.usd;
+      bnbPriceDisplay.textContent = `$${bnbPriceUSD.toFixed(2)}`;
+      updateMinValue();
+      updateTokenValues();
+    } catch (error) {
+      console.error('Failed to fetch BNB price:', error);
+      bnbPriceDisplay.textContent = 'Error';
+    }
+  }
+
+  function updateMinValue() {
+    let currency = [...currencyRadios].find(r => r.checked).value;
+    if (currency === 'USDC') {
+      amountInput.min = 100;
+      amountInput.step = 0.01;
+      if (parseFloat(amountInput.value) < 100) amountInput.value = 100;
+    } else if (currency === 'BNB' && bnbPriceUSD > 0) {
+      const bnbMin = 100 / bnbPriceUSD;
+      amountInput.min = bnbMin.toFixed(6);
+      amountInput.step = 0.0001;
+      if (parseFloat(amountInput.value) < bnbMin) amountInput.value = bnbMin.toFixed(6);
+    }
+  }
+
+  function updateTokenValues() {
+    let amount = parseFloat(amountInput.value);
+    if (isNaN(amount)) return;
+
+    let currency = [...currencyRadios].find(r => r.checked).value;
+
+    if (currency === 'USDC') {
+      if (amount < 100) return;
+    } else if (currency === 'BNB') {
+      if (bnbPriceUSD === 0 || amount * bnbPriceUSD < 100) return;
+    }
+
+    let amountInUSD = currency === 'BNB' ? amount * bnbPriceUSD : amount;
+
+    let foalca = Math.floor(amountInUSD * 5000);
+    let bonus = Math.floor(amountInUSD * 2000);
+
+    foalcaInput.value = foalca;
+    bonusText.innerHTML = `+${bonus.toLocaleString()} bonus <img src="favicon.png" alt="FOALCA" style="height: 22px; vertical-align: middle; margin-left: 4px; margin-right: 6px;" />FOALCA!`;
+
+
+    if (amountInUSD >= 10000) {
+     lifetimeBenefit.innerHTML = 'Lifetime zero taxes: ✔️';
+     lifetimeBenefit.classList.add('active');
+     } else {
+     lifetimeBenefit.innerHTML = 'Lifetime zero taxes: ❌';
+     lifetimeBenefit.classList.remove('active');
+   }
+  }
+
+  amountInput.addEventListener('input', updateTokenValues);
+  foalcaInput.addEventListener('input', () => {
+    if (parseInt(foalcaInput.value) < 500000) foalcaInput.value = 500000;
+  });
+
+  currencyRadios.forEach(r => r.addEventListener('change', () => {
+    updateMinValue();
+    updateTokenValues();
+  }));
+
+  fetchBNBPrice();
+  setInterval(fetchBNBPrice, 15000);
+</script>
+
+
+<script>
+document.getElementById("wallet-address").onclick = () => {
+  const addressEl = document.getElementById("wallet-address");
+  const original = addressEl.innerText;
+
+  navigator.clipboard.writeText(original).then(() => {
+    addressEl.innerText = "📋 Address copied!";
+    setTimeout(() => {
+      addressEl.innerText = original;
+    }, 2000);
+  });
+};
+</script>
+
+
+  <footer>
+    <p>© 2025 ForAllCases.com — All rights reserved</p>
+  </footer>
+</body>
+</html>
 
   <footer>
     <p>© 2025 ForAllCases.com — All rights reserved</p>
