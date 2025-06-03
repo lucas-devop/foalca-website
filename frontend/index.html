@@ -27,6 +27,36 @@
 </head>
 <body>
 
+
+<div class="hero-banner">
+  <div class="banner-overlay"></div>
+  <div class="banner-text" id="rotatingText">
+    🌟 Join the movement – fund the future of internet rewards!
+  </div>
+</div>
+
+<script>
+  const bannerPhrases = [
+    "🌟 Join the movement – fund the future of internet rewards!",
+    "🚀 Early backers earn lifetime zero-fee usage & top benefits!",
+    "💸 Secure your share in FOALCA – no fake tokens, no risk of rug pull!",
+    "🤝 Help us launch transparently. Real token. Real value."
+  ];
+
+  let phraseIndex = 0;
+  setInterval(() => {
+    phraseIndex = (phraseIndex + 1) % bannerPhrases.length;
+    const textEl = document.getElementById("rotatingText");
+    textEl.style.opacity = 0;
+    setTimeout(() => {
+      textEl.innerHTML = bannerPhrases[phraseIndex];
+      textEl.style.opacity = 1;
+    }, 400);
+  }, 20000);
+</script>
+  
+  
+
   <!-- LOGO -->
   <div class="logo-container">
     <img src="forallcases-foalca.png" alt="FOALCA Logo" class="logo" />
