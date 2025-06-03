@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fundraising and Early-Stage Offers | FOALCA</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #ffffff);
+      color: #333;
+      overflow-x: hidden;
+    }
+
+        header {
+      background-color: #004d40;
+      color: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+      animation: slideIn 1s ease;
+    }
+
+    .header-logo {
+      display: inline-block;
+      vertical-align: middle;
+      width: 48px;
+      height: 48px;
+      margin-right: 12px;
+    }
+
+    .header-title {
+      display: inline-block;
+      font-size: 2.5rem;
+      vertical-align: middle;
+    }
+
+    .section {
+      padding: 4rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+      animation: fadeInUp 1s ease both;
+    }
+
+    .section:nth-child(even) {
+      background-color: #f1f1f1;
+    }
+
+    h2 {
+      color: #00695c;
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+    }
+
+    p, li {
+      line-height: 1.7;
+      font-size: 1.1rem;
+    }
+
+    ul {
+      margin: 1rem 0 2rem 1.5rem;
+    }
+
+    .highlight {
+      background: #e0f2f1;
+      padding: 1rem;
+      border-left: 6px solid #00796b;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      padding: 2rem;
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+    }
+
+    .card h3 {
+      color: #004d40;
+      margin-bottom: 1rem;
+    }
+
+    .card .amount {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #c13a3a;
+      margin-bottom: 0.8rem;
+    }
+
+    .card .desc {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: #004d40;
+      color: #fff;
+      font-size: 0.9rem;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    
+    .funding-highlight {
+    background: transparent;
+    color: #ffffff;
+    text-align: center;
+    padding: 6rem 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+
+    .flash-container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .flash-text {
+      font-size: 1.4rem;
+      letter-spacing: 2px;
+      color: #053732;
+      margin-bottom: 1rem;
+      animation: pulseText 2s ease-in-out infinite;
+    }
+
+    .flash-amount {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: #008777;
+      text-shadow: 0 0 12px rgba(0,255,200,0.7), 0 0 30px rgba(0,255,200,0.4);
+      animation: glowLoop 5s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseText {
+      0%, 100% { opacity: 0.9; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); }
+    }
+
+    @keyframes glowLoop {
+      0% { text-shadow: 0 0 12px rgba(0,255,200,0.7), 0 0 30px rgba(0,255,200,0.4); transform: scale(1); }
+      100% { text-shadow: 0 0 20px rgba(0,255,255,1), 0 0 60px rgba(0,255,255,0.8); transform: scale(1.07); }
+    }
+
+
+    .special-announcement {
+      background: linear-gradient(135deg, #e0f2f1, #ffffff);
+      border-top: 4px dashed #00695c;
+    }
+
+    .notice-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+
+    .notice-box {
+      flex: 1 1 300px;
+      background: #ffffff;
+      border-left: 6px solid #00796b;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border-radius: 10px;
+      animation: popInBox 1s ease both;
+    }
+
+    .notice-box h3 {
+      color: #004d40;
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+    }
+
+    .notice-box p {
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    .notice-box a {
+      color: #00695c;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .notice-box a:hover {
+      text-decoration: underline;
+    }
+
+    @keyframes popInBox {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    
+
+      .enhanced-box {
+  background: #ffffff;
+  padding: 2rem;
+  border-left: 5px solid #009688;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.enhanced-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccd7d8;
+  border-radius: 10px;
+  margin-top: 0.4rem;
+  margin-bottom: 1rem;
+  background-color: #fdfdfd;
+  transition: border-color 0.25s ease;
+}
+
+.input-field:focus {
+  border-color: #009688;
+  outline: none;
+  background-color: #ffffff;
+}
+
+.currency-option {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 1.5rem;
+  font-weight: 900;
+  font-size: 1rem;
+  color: rgb(8 113 177);
+  gap: 6px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.currency-option img {
+  height: 22px;
+  border-radius: 50%;
+  box-shadow: 0 0 3px rgba(0,0,0,0.1);
+}
+
+.currency-option:hover {
+  color: #00796b;
+}
+
+.price-display {
+  font-weight: 600;
+  color: #00695c;
+  margin-top: 12px;
+  font-size: 1.05rem;
+}
+
+.bonus-text {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #00897b;
+  background: #e0f2f1;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  box-shadow: inset 0 0 6px rgba(0,255,255,0.15);
+  text-align: center;
+}
+
+.lifetime-benefit {
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.lifetime-benefit::before {
+  content: '🎁 ';
+}
+
+.wallet-highlight {
+    background: #ffffff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-top: 2rem;
+    text-align: center;
+    animation: fadeIn 0.8s ease-in;
+}
+
+.wallet-highlight p {
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: #004d40;
+  margin-bottom: 0.6rem;
+}
+
+.wallet-address {
+  font-size: 1.3rem;
+  word-break: break-word;
+  font-family: 'Courier New', monospace;
+  background: #ffffff;
+  padding: 1rem 1.2rem;
+  border-radius: 8px;
+  border: 1px solid #cce5e2;
+  box-shadow: 0 0 10px rgba(0, 150, 136, 0.08);
+  color: #00796b;
+  transition: background 0.3s ease;
+  text-align: center;
+}
+
+.wallet-address:hover {
+  background: #f5fefc;
+  color: #004d40;
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+.lifetime-box {
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  margin-top: 1rem;
+  border-radius: 8px;
+  background: #fff8e1;
+  color: #a77b00;
+  border-left: 5px solid #ffc107;
+  box-shadow: inset 0 0 4px rgba(255, 193, 7, 0.2);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.lifetime-box::before {
+  content: '💎 ';
+}
+
+.lifetime-box.active {
+  background: #e0f7e9;
+  color: #006d3c;
+  border-left-color: #4caf50;
+  box-shadow: inset 0 0 6px rgba(76, 175, 80, 0.2);
+}
+
+
+.instructions-box {
+  background: linear-gradient(135deg, #e3f2fd, #ffffff);
+  border-left: 5px solid #1976d2;
+  padding: 1.2rem 1.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  color: #0d47a1;
+  box-shadow: 0 4px 12px rgba(25, 118, 210, 0.15);
+  font-weight: 600;
+  text-align: center;
+  transition: background 0.3s ease;
+}
+
+.instructions-box:hover {
+  background: linear-gradient(135deg, #d0e8ff, #ffffff);
+}
+
+
+.wallet-network-warning {
+    margin-top: 1rem;
+    background: #fff0f0;
+    color: #c13a3a;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(255, 193, 7, 0.1);
+}
+
+
+.contact-support-section {
+  background: linear-gradient(to right, #f0f4ff, #ffffff);
+  border-top: 4px solid #1976d2;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.contact-box {
+  background: #ffffff;
+  padding: 2rem 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(25, 118, 210, 0.1);
+  text-align: center;
+}
+
+.contact-message {
+  background: #e3f2fd;
+  border-left: 6px solid #1976d2;
+  color: #0d47a1;
+  padding: 1.2rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  transition: background 0.3s ease;
+}
+
+.contact-message:hover {
+  background: #d0e8ff;
+}
+
+.contact-box p {
+  font-size: 1.05rem;
+  margin: 0.4rem 0;
+  color: #003366;
+}
+
+.contact-box a {
+  color: #1976d2;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.contact-box a:hover {
+  text-decoration: underline;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1><img src="favicon.png" alt="FOALCA Logo" class="header-logo"><span class="header-title">Fundraising & Early-stage Offers</span></h1>
+    <p>Powering the future of internet activity rewards</p>
+  </header>
+
+  <section class="section">
+    <h2>About FOALCA</h2>
+    <p>ForAllCases is a deflationary utility token that focuses on rewarding real internet activity. It relies on transparency, community, and a clear vision for long-term adoption and real-world value.</p>
+  </section>
+
+  <section class="section">
+    <h2>Launch Requirements & Funding Goals</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Development</h3>
+        <div class="amount">$1,000,000</div>
+        <div class="desc">Costs of development | share for the team - with zero FOALCA token share and with zero risk of rug pull</div>
+      </div>
+      <div class="card">
+        <h3>Marketing</h3>
+        <div class="amount">$450,000</div>
+        <div class="desc">to build the user base and launch long-term campaigns for about 5 - 6 years. A marketing agency, or individual cooperation</div>
+      </div>
+      <div class="card">
+        <h3>Security Audit</h3>
+        <div class="amount">$50,000</div>
+        <div class="desc">for high-level external audits | if there are funds left after the audit, they will be added to marketing</div>
+      </div>
+      <div class="card">
+        <h3>Liquidity</h3>
+        <div class="amount">$1,000,000</div>
+        <div class="desc">to reach the DEX listing price of $0.00005 | ForAllCases will be listed on PancakeSwap.</div>
+      </div>
+    </div>
+  </section>
+
+    <section-highlight class="section funding-highlight">
+    <div class="flash-container">
+      <div class="flash-text">Total Funding Goal</div>
+      <div class="flash-amount">$2,500,000</div>
+    </div>
+  </section-highlight>
+
+  <section class="section">
+    <h2>Investor Benefits</h2>
+    <ul>
+      <li>✅ 15% of total supply (15B FOALCA)</li>
+      <li>✅ Extra FOALCA tokens | 5000 FOALCA per 1 USD | (for everyone who backs the project)</li>
+      <li>✅ Lifetime zero-fee FOALCA usage ($10,000+)</li>
+      <li>✅ Governance rights with veto power for top 3 investors (Board membership)</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>Price Milestones</h2>
+    <div class="highlight">
+      <p><strong>Initial:</strong> $0.00005 (after DEX listing)</p>
+      <p><strong>Deflationary goal:</strong> $0.001 - $0.005</p>
+      <p><strong>Long-term target:</strong> $0.01+</p>
+    </div>
+    <p>Burn mechanisms will reduce supply over time, increasing value and stabilizing market behavior. Up to 30% of total supply is planned to be burned in future years.</p>
+  </section>
+
+  <section class="section">
+    <h2>FOALCA Fundraising vs classic pre-sale</h2>
+    <p>No side smart contracts, no fake tokens, no TGE. For supporting our project you will receive official FOALCA tokens that will be in circulation and are already minted.</p>
+  </section>
+
+  <section class="section">
+    <h2>Referral program</h2>
+    <p>We provide referral cooperation and you can get extra free tokens for bringing an investor and sharing the ForAllCases project.</p>
+  </section>
+
+  <section class="section">
+    <h2>Individual offers</h2>
+    <p>All your investment offers will be completely individual. We do not provide any direct "pre-sale inputs". We want this fundraising to be completely trustworthy and not have the uncertain atmosphere of many meme pre-sales.</p>
+  </section>
+
+    <section class="section special-announcement">
+    <div class="notice-grid">
+      <div class="notice-box">
+        <h3>Minimum Investment</h3>
+        <p>Each investment offer must be at least <strong>$100</strong>.</p>
+      </div>
+      <div class="notice-box">
+        <h3>Fundraising End</h3>
+        <p>After the planned total amount is raised <strong>the fundraising will end.</strong> No further investments will be accepted afterward.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section special-announcement enhanced-offer">
+  <div class="notice-grid">
+    <div class="notice-box enhanced-box">
+      <h3>Submit your offers</h3>
+
+      <form id="investment-form" onsubmit="return false;">
+        <label for="amount">Investment amount (min. $100):</label><br />
+        <input type="number" id="amount" step="0.0001" value="0.1" required class="input-field" />
+
+        <label>Choose currency:</label><br />
+        <label class="currency-option">
+          <input type="radio" name="currency" value="USDC" checked />
+          <img src="usdc-icon.png" alt="USDC" />
+          USDC
+        </label>
+        <label class="currency-option">
+          <input type="radio" name="currency" value="BNB" />
+          <img src="bnb-icon.png" alt="BNB" />
+          BNB
+        </label><br /><br />
+
+        <div id="bnb-price-display" class="price-display">
+          Current BNB price: <span id="bnb-price-value">$...</span>
+        </div><br />
+
+        <label for="foalca">FOALCA tokens you expect (min. 500,000):</label><br />
+        <input type="number" id="foalca" min="500000" step="1" value="500000" required class="input-field" /><br /><br />
+
+        <div id="bonus-text" class="bonus-text">
+          +500,000 bonus FOALCA!
+        </div><br />
+
+        <div id="lifetime-benefit" class="lifetime-box">
+          Lifetime zero taxes: ❌
+        </div>
+      </form>
+
+<div class="wallet-highlight">
+  <p>Send your chosen amount to this wallet:</p>
+  <div id="wallet-address" class="wallet-address" style="cursor: pointer;" title="Click to copy">
+    0x8280C62D83150B2962f27B631b224F8c7Ca3EF0a
+  </div>
+  <div class="wallet-network-warning">
+    ⚠️ Please make sure to send your contribution via <strong>Binance Smart Chain (BEP-20)</strong> only!
+  </div>
+</div>
+</section>
+  
+  
+<section class="section contact-support-section">
+  <div class="contact-box">
+    <div class="contact-message">
+      📩 If you have supported the ForAllCases project, please send us your wallet address and the amount you contributed. You will receive your FOALCA tokens in the same wallet.
+    </div>
+
+    <p><strong>Telegram:</strong> @lucas_devop</p>
+    <p><strong>Discord:</strong> lucas_devop</p>
+    <p><strong>Email:</strong> <a href="mailto:support@foalca.com">support@foalca.com</a></p>
+  </div>
+</section>
+
+
+
+<script>
+  const amountInput = document.getElementById('amount');
+  const foalcaInput = document.getElementById('foalca');
+  const bonusText = document.getElementById('bonus-text');
+  const lifetimeBenefit = document.getElementById('lifetime-benefit');
+  const bnbPriceDisplay = document.getElementById('bnb-price-value');
+  const currencyRadios = document.getElementsByName('currency');
+
+  let bnbPriceUSD = 0;
+
+  async function fetchBNBPrice() {
+    try {
+      const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=usd');
+      const data = await response.json();
+      bnbPriceUSD = data.binancecoin.usd;
+      bnbPriceDisplay.textContent = `$${bnbPriceUSD.toFixed(2)}`;
+      updateMinValue();
+      updateTokenValues();
+    } catch (error) {
+      console.error('Failed to fetch BNB price:', error);
+      bnbPriceDisplay.textContent = 'Error';
+    }
+  }
+
+  function updateMinValue() {
+    let currency = [...currencyRadios].find(r => r.checked).value;
+    if (currency === 'USDC') {
+      amountInput.min = 100;
+      amountInput.step = 0.01;
+      if (parseFloat(amountInput.value) < 100) amountInput.value = 100;
+    } else if (currency === 'BNB' && bnbPriceUSD > 0) {
+      const bnbMin = 100 / bnbPriceUSD;
+      amountInput.min = bnbMin.toFixed(6);
+      amountInput.step = 0.0001;
+      if (parseFloat(amountInput.value) < bnbMin) amountInput.value = bnbMin.toFixed(6);
+    }
+  }
+
+  function updateTokenValues() {
+    let amount = parseFloat(amountInput.value);
+    if (isNaN(amount)) return;
+
+    let currency = [...currencyRadios].find(r => r.checked).value;
+
+    if (currency === 'USDC') {
+      if (amount < 100) return;
+    } else if (currency === 'BNB') {
+      if (bnbPriceUSD === 0 || amount * bnbPriceUSD < 100) return;
+    }
+
+    let amountInUSD = currency === 'BNB' ? amount * bnbPriceUSD : amount;
+
+    let foalca = Math.floor(amountInUSD * 5000);
+    let bonus = Math.floor(amountInUSD * 5000);
+
+    foalcaInput.value = foalca;
+    bonusText.innerHTML = `+${bonus.toLocaleString()} bonus <img src="favicon.png" alt="FOALCA" style="height: 22px; vertical-align: middle; margin-left: 4px; margin-right: 6px;" />FOALCA!`;
+
+
+    if (amountInUSD >= 10000) {
+     lifetimeBenefit.innerHTML = 'Lifetime zero taxes: ✔️';
+     lifetimeBenefit.classList.add('active');
+     } else {
+     lifetimeBenefit.innerHTML = 'Lifetime zero taxes: ❌';
+     lifetimeBenefit.classList.remove('active');
+   }
+  }
+
+  amountInput.addEventListener('input', updateTokenValues);
+  foalcaInput.addEventListener('input', () => {
+    if (parseInt(foalcaInput.value) < 500000) foalcaInput.value = 500000;
+  });
+
+  currencyRadios.forEach(r => r.addEventListener('change', () => {
+    updateMinValue();
+    updateTokenValues();
+  }));
+
+  fetchBNBPrice();
+  setInterval(fetchBNBPrice, 15000);
+</script>
+
+
+<script>
+document.getElementById("wallet-address").onclick = () => {
+  const addressEl = document.getElementById("wallet-address");
+  const original = addressEl.innerText;
+
+  navigator.clipboard.writeText(original).then(() => {
+    addressEl.innerText = "📋 Address copied!";
+    setTimeout(() => {
+      addressEl.innerText = original;
+    }, 2000);
+  });
+};
+</script>
+
+
+<footer>
+  <p>© 2025 ForAllCases.com — All rights reserved</p>
+  <p style="margin-top: 1.5rem;">
+    <a href="https://forallcases.com/terms-and-conditions" style="color: #80cbc4; font-weight: 600; text-decoration: underline;">
+      View Fundraising Terms & Conditions
+    </a>
+  </p>
+</footer>
+</body>
+</html>
