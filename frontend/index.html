@@ -92,11 +92,6 @@
           <span>Trust Wallet</span>
         </div>
   
-        <div class="wallet-option" id="connectWalletConnect">
-          <img src="walletconnect-icon.png" alt="WalletConnect" />
-          <span>WalletConnect (QR)</span>
-        </div>
-  
         <button id="closeWalletModal" class="glow-btn danger" style="margin-top: 15px;">Close</button>
   
       </div>
@@ -586,9 +581,6 @@ document.getElementById("status").onclick = () => {
 
 
 
-<!-- Wallet Modal - JS -->
-<script src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
-
 <script>
 
 const walletModal = document.getElementById("walletModal");
@@ -635,33 +627,9 @@ async function connectWallet(wallet) {
 }
 
 
-async function connectWalletConnect() {
-  try {
-    const wcProvider = new window.WalletConnectProvider.default({
-      rpc: {
-        56: "https://bsc-dataseed.binance.org/"
-      }
-    });
-
-    await wcProvider.enable();
-    provider = new ethers.BrowserProvider(wcProvider);
-    signer = await provider.getSigner();
-    walletAddress = await signer.getAddress();
-    contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
-    updateUIConnected(walletAddress);
-    walletModal.style.display = "none";
-
-  } catch (err) {
-    console.error(err);
-    alert("Failed to connect via WalletConnect.");
-  }
-}
-
-
 document.getElementById("connectMetaMask").onclick = () => connectWallet('metamask');
 document.getElementById("connectCoinbase").onclick = () => connectWallet('coinbase');
 document.getElementById("connectTrust").onclick = () => connectWallet('trust');
-document.getElementById("connectWalletConnect").onclick = connectWalletConnect;
 
 </script>
 
