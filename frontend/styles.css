@@ -841,3 +841,40 @@ html, body {
   width: 0%;
   transition: width 1s ease-in-out;
 }
+
+
+
+.background-cube {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 600px;
+  transform-style: preserve-3d;
+  animation: rotateCube 30s linear infinite;
+  transform: translate(-50%, -50%) rotateX(0deg) rotateY(0deg);
+  z-index: 0;
+  perspective: 1500px;
+}
+
+.face {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: rgba(0, 255, 200, 0.05);
+  border: 2px solid rgba(0, 255, 200, 0.2);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+}
+
+
+.front  { transform: translateZ(300px); }
+.back   { transform: rotateY(180deg) translateZ(300px); }
+.right  { transform: rotateY(90deg) translateZ(300px); }
+.left   { transform: rotateY(-90deg) translateZ(300px); }
+.top    { transform: rotateX(90deg) translateZ(300px); }
+.bottom { transform: rotateX(-90deg) translateZ(300px); }
+
+@keyframes rotateCube {
+  0%   { transform: translate(-50%, -50%) rotateX(0deg) rotateY(0deg); }
+  100% { transform: translate(-50%, -50%) rotateX(360deg) rotateY(360deg); }
+}
