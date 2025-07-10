@@ -27,36 +27,6 @@
 </head>
 <body>
 
-
-<div class="hero-banner">
-  <div class="banner-overlay"></div>
-  <div class="banner-text" id="rotatingText">
-    🌟 Join the movement – fund the future of internet rewards!
-  </div>
-</div>
-
-<script>
-  const bannerPhrases = [
-    "🌟 Join the movement – fund the future of internet rewards!",
-    "🚀 Early backers earn lifetime zero-fee usage & top benefits!",
-    "💸 Secure your share in FOALCA – no fake tokens, no risk of rug pull!",
-    "🤝 Help us launch transparently. Real token. Real value."
-  ];
-
-  let phraseIndex = 0;
-  setInterval(() => {
-    phraseIndex = (phraseIndex + 1) % bannerPhrases.length;
-    const textEl = document.getElementById("rotatingText");
-    textEl.style.opacity = 0;
-    setTimeout(() => {
-      textEl.innerHTML = bannerPhrases[phraseIndex];
-      textEl.style.opacity = 1;
-    }, 400);
-  }, 20000);
-</script>
-  
-  
-
   <!-- LOGO -->
   <div class="logo-container">
     <img src="forallcases-foalca.png" alt="FOALCA Logo" class="logo" />
@@ -123,16 +93,6 @@
   💰 Raised: 
   <span id="fundsRaised" style="font-size: 28px; font-weight: bold; color: #00ffe0;"></span>
 </p>
-
-
-   <p style="margin-top: 20px; font-size: 18px;">
-      👉 To join, visit: 
-      <a href="https://forallcases.com/fundraising-offers" 
-         target="_blank" 
-         style="color: #00ffe0; text-decoration: underline;">
-        Fundraising and offers
-      </a>
-    </p>
 
   </div>
 </section>
