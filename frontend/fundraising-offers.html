@@ -669,7 +669,7 @@
 
     let amountInUSD = currency === 'BNB' ? amount * bnbPriceUSD : amount;
 
-    let foalca = Math.floor(amountInUSD * 10000);
+    let foalca = Math.floor(amountInUSD * 5000);
     let bonus = Math.floor(amountInUSD * 5000);
 
     foalcaInput.value = foalca;
@@ -687,7 +687,7 @@
 
   amountInput.addEventListener('input', updateTokenValues);
   foalcaInput.addEventListener('input', () => {
-    if (parseInt(foalcaInput.value) < 1000000) foalcaInput.value = 1000000;
+    if (parseInt(foalcaInput.value) < 500000) foalcaInput.value = 500000;
   });
 
   currencyRadios.forEach(r => r.addEventListener('change', () => {
